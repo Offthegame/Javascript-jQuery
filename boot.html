@@ -308,6 +308,10 @@
       </div>
     </div>
 
+    <h4 class="product-title">상품제목</h4>
+    <p class="product-contents">상품내용</p>
+    <div style="margin-bottom: 500px"></div>
+
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
@@ -535,6 +539,13 @@
           $(".tab-content").eq(n).addClass("show");
         }
       });
+
+      var 어레이 = ["BMW", 520];
+      var 오브젝트 = { brand: "BMW", model: 520 };
+      var 자료 = [{ brand: "BMW" }, { model: 520 }];
+
+      $(".product-title").text(어레이[0]);
+      $(".product-contents").text(자료[1].model);
     </script>
   </body>
 </html>
