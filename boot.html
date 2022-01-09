@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+      integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+      crossorigin="anonymous"
+    />
+
+    <title>Suits Studio</title>
+    <style>
+      .main-background {
+        background-image: url(person.jpg);
+        background-size: cover;
+        color: white;
+        border-radius: 0px;
+      }
+
+      .nav-menu {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        align-items: center;
+        position: fixed;
+        z-index: 4;
+        width: 100%;
+        background: transparent;
+        color: white;
+        transition: color, background, font-size 0.5s;
+      }
+
+      .nav-black {
+        background: white;
+        color: black;
+        transition: color, background, font-size 0.5s;
+        font-size: smaller;
+      }
+
+      .nav-sub {
+        display: none;
+        z-index: 3;
+      }
+      .origin-font {
+        font-size: 24px;
+        transition: font-size 0.5s;
+        height: 30px;
+        margin: 0;
+      }
+
+      .small-font {
+        font-size: 20px;
+        transition: font-size 0.5s;
+        height: 30px;
+      }
+
+      .opacity-zero {
+        opacity: 0;
+      }
+
+      .black-background {
+        background: rgba(0, 0, 0, 0.5);
+        position: fixed;
+        z-index: 5;
+        width: 100%;
+        height: 100%;
+        display: block;
+        transition: all 1s;
+        transform: translateY(-1500px);
+      }
+
+      .slide-down {
+        transform: translateY(0px);
+      }
+
+      .white-background {
+        background: white;
+        width: 80%;
+        margin: 100px auto;
+        padding: 20px;
+        border-radius: 10px;
+      }
+
+      #email-alert {
+        display: none;
+        color: tomato;
+      }
+
+      #password-alert {
+        display: none;
+        color: tomato;
+      }
+
+      #password-AZ-alert {
+        display: none;
+        color: tomato;
+      }
+
+      .left-menu {
+        width: 150px;
+        height: 100%;
+        background: black;
+        color: white;
+        position: fixed;
+        margin-left: -150px;
+        z-index: 5;
+      }
+
+      .slide-box {
+        width: 100vw;
+        float: left;
+      }
+
+      .slide-container {
+        width: 300vw;
+        transition: transform 1s;
+        position: relative;
+      }
+
+      .slide-box img {
+        width: 100%;
+      }
+
+      .slide-next {
+        position: absolute;
+        top: 45%;
+        right: 0;
+      }
+
+      .slide-before {
+        position: absolute;
+        top: 45%;
+        left: 0;
+      }
+
+      .slide-btn {
+        color: rgba(255, 255, 255, 0.5);
+        width: 80px;
+        height: 160px;
+        background: rgba(0, 0, 0, 0.2);
+        border: 0px;
+        transition: color, background 0.5s;
+      }
+
+      .slide-btn-l {
+        border-radius: 0 80px 80px 0;
+      }
+
+      .slide-btn-r {
+        border-radius: 80px 0 0 80px;
+      }
+
+      .slide-btn:hover {
+        color: rgba(255, 255, 255, 0.8);
+        background: rgba(0, 0, 0, 0.5);
+      }
+      ul.list {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        border-bottom: 1px solid #ccc;
+      }
+      ul.list::after {
+        content: "";
+        display: block;
+        clear: both;
+      }
+      .tab-button {
+        display: block;
+        padding: 10px 20px 10px 20px;
+        float: left;
+        margin-right: -1px;
+        margin-bottom: -1px;
+        color: grey;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .active {
+        border-top: 2px solid orange;
+        border-right: 1px solid #ccc;
+        border-bottom: 1px solid white;
+        border-left: 1px solid #ccc;
+        color: black;
+        margin-top: -2px;
+      }
+      .tab-content {
+        display: none;
+        padding: 10px;
+      }
+      .show {
+        display: block;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="left-menu">
+      <p>Menu Title</p>
+    </div>
+    <div class="nav-menu">
+      <h4 class="origin-font">Suits Studio</h4>
+      <a id="nav-sub-button">Products</a>
+    </div>
+
+    <ul class="list-group nav-sub">
+      <li class="list-group-item">Formal Suits</li>
+      <li class="list-group-item">Casual Suits</li>
+      <li class="list-group-item">Accessories</li>
+    </ul>
+
+    <div class="black-background opacity-zero">
+      <!-- <div class="white-background">
+            <p>로그인하세요</p>
+            <button type="button" class="btn btn-danger">Close</button>
+        </div> -->
+      <div class="white-background">
+        <p>로그인하세요</p>
+        <form action="/boot.html">
+          <div class="form-group">
+            <input
+              type="email"
+              class="form-control"
+              placeholder="Email"
+              id="email"
+            />
+            <p id="email-alert">email을 확인해주세요</p>
+          </div>
+          <div class="form-group">
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Password"
+              id="password"
+            />
+            <p id="password-alert">password를 확인해주세요</p>
+            <p id="password-AZ-alert">password 안에 대문자를 추가해주세요</p>
+          </div>
+          <button type="submit" class="btn btn-primary">전송</button>
+          <button id="lg-cancel" type="reset" class="btn btn-danger">
+            취소
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="jumbotron main-background">
+      <h1 class="display-4">Hello, world!</h1>
+      <p class="lead">
+        This is a simple hero unit, a simple jumbotron-style component for
+        calling extra attention to featured content or information.
+      </p>
+      <hr class="my-4" />
+      <p>
+        It uses utility classes for typography and spacing to space content out
+        within the larger container.
+      </p>
+      <a id="to-lg" class="btn btn-primary btn-lg" href="#" role="button"
+        >Log In</a
+      >
+      <a id="show-menu" class="btn btn-danger btn-lg" href="#" role="button"
+        >Show Menu</a
+      >
+    </div>
+
+    <div style="overflow: hidden; position: relative">
+      <div class="slide-container">
+        <div class="slide-box">
+          <img src="img/suits1.jpg" />
+        </div>
+        <div class="slide-box">
+          <img src="img/suits2.jpg" />
+        </div>
+        <div class="slide-box">
+          <img src="img/suits3.jpg" />
+        </div>
+      </div>
+      <button class="slide-before slide-btn slide-btn-l">Before</button>
+      <button class="slide-next slide-btn slide-btn-r">Next</button>
+    </div>
+
+    <button class="slide-1">1</button>
+    <button class="slide-2">2</button>
+    <button class="slide-3">3</button>
+
+    <div class="container mt-5">
+      <ul name="tab" class="list">
+        <li data-id="0" class="tab-button">Products</li>
+        <li data-id="1" class="tab-button active">Information</li>
+        <li data-id="2" class="tab-button">Shipping</li>
+      </ul>
+
+      <div class="tab-content">
+        <p>상품설명입니다. Product</p>
+      </div>
+      <div class="tab-content show">
+        <p>상품정보입니다. Info</p>
+      </div>
+      <div class="tab-content">
+        <p>배송정보입니다. Shipping</p>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(window).on("scroll", function () {
+        if ($(window).scrollTop() > 50) {
+          $(".nav-menu").addClass("nav-black");
+          $(".nav-menu > h4").addClass("small-font");
+        } else {
+          $(".nav-menu").removeClass("nav-black");
+          $(".nav-menu > h4").removeClass("small-font");
+        }
+      });
+
+      let pictureNow = 1;
+      let picCount = 3;
+
+      $(".slide-next").click(function () {
+        if (pictureNow < picCount) {
+          $(".slide-container").css({
+            transform: "translateX(-" + pictureNow + "00vw)",
+          });
+          pictureNow += 1;
+        }
+        // if (pictureNow == 1) {
+        //   $(".slide-container").css({ transform: "translateX(-100vw)" });
+        //   pictureNow = 2;
+        //   //  let pictureNow = 2; 하니까 안되더라?
+        // } else if (pictureNow == 2) {
+        //   $(".slide-container").css({ transform: "translateX(-200vw)" });
+        // }
+      });
+      $(".slide-before").click(function () {
+        if (pictureNow > 1) {
+          pictureNow -= 1;
+          const vwNow = pictureNow - 1;
+          $(".slide-container").css({
+            transform: "translateX(-" + vwNow + "00vw)",
+          });
+        }
+        // if (pictureNow == 1) {
+        //   $(".slide-container").css({ transform: "translateX(-100vw)" });
+        //   pictureNow = 2;
+        //   //  let pictureNow = 2; 하니까 안되더라?
+        // } else if (pictureNow == 2) {
+        //   $(".slide-container").css({ transform: "translateX(-200vw)" });
+        // }
+      });
+
+      // jQuery에서 addEventListener는 .on으로 간단하게 사용된다.
+      // display = default(?), display = none은 .show(), .hide() 이용
+      // .fadeIn(), .fadeOut(), .slideUp(), .slideDown() 등도 자주 쓰임
+      // $('.btn-lg').on('click', function() {$('.black-background').show();} );
+
+      // $('.nav-menu>a').on('click', function() {$('nav-sub').fadeIn();});
+      // 아 위에 .nav-sub  .점을 안찍어서 작동이 안되고 있었다 ㅠㅠ
+
+      $(".black-background").on("click", function (e) {
+        // event bubble로 상위 태그들이 선택됨
+        // 만약에 지금 실제로 클릭한게 검은 배경일 때만
+        //   $(".black-background")
+        //   .removeClass("slide-down")
+        //   .addClass("opacity-zero");
+
+        // event bubble을 없애기 위해 '실제로 클릭한' 것을 선택하는 코드 필요
+        // e.target; //지금 실제로 클릭한 요소
+        // e.currentTarget; //지금 이벤트리스터가 달린(.on) 곳
+        // $(this); //위와 같은 의미, 쌩 javascript의 경우 this만 사용
+        // e.preventDefault(); //기본동작 막기
+        console.log(e.target);
+        console.log(e.currentTarget);
+        if (e.target == e.currentTarget) {
+          // if (e.target === $('.black-backgroud')) {
+          // 안되는 이유는 하나는 쌩javascript이고 하나는 jquery이기 때문
+          // this는 잘 작동함
+          $(".black-background")
+            .removeClass("slide-down")
+            .addClass("opacity-zero");
+        }
+      });
+      $(".white-background>button").on("click", function () {
+        $(".black-background").fadeOut();
+      });
+
+      $(".nav-menu>a").click(function () {
+        $(".nav-sub").slideToggle();
+        console.log("클릭");
+      });
+      // Toggle은 클릭으로 보였다 안 보였다 할 수 있게 해준다.
+      // .toggle(), .fadeToggle()이 있다.
+      // $('div.nav-menu>a').on('click', function() {$('.nav-sub').slideDown();});
+      // $('#nav-sub-button').on('click', function() {$('.nav-sub').slideDown();});
+      // $('#nav-sub-button').click(function() {$('.nav-sub').slideDown();});
+
+      $("#to-lg").click(function () {
+        $(".black-background")
+          .removeClass("opacity-zero")
+          .addClass("slide-down");
+        // $('.black-background').show().animate({marginTop:'0', height:'100%'}, 2000);
+      });
+      $("#lg-cancel").click(function () {
+        $(".black-background")
+          .removeClass("slide-down")
+          .addClass("opacity-zero");
+      });
+      // $('#lg-cancel').click(function () {$('.black-background').fadeOut().animate({marginTop:'-700', height:'0%'});});
+      // $('#to-lg').click(function () {$('.black-background').animate({marginTop:'0'});});
+      // $('#lg-cancel').click(function () {$('.black-background').animate({marginTop:'-700'});});
+      // 어차피 함수이기에 여러 동작을 할 수 있었다.
+      // black-background가 display:none; 돼있었다는 것을 몰랐다!
+      // '작은따옴표'를 쓰지 않아서 태그가 선택되지 않았다.
+
+      $(".white-background > form").on("submit", function (event) {
+        if (
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+            $("#email").val()
+          ) == false ||
+          $("#email").val() == ""
+        ) {
+          // if(!(/\s+@\s+.\s+/.test($('#email')))){
+          event.preventDefault();
+          $("#email-alert").fadeIn();
+        }
+        if (/[A-Z]/.test($("#password").val()) == false) {
+          event.preventDefault();
+          $("#password-AZ-alert").fadeIn();
+        }
+
+        // if($('#email').val() == '' && $('#password').val() == '') {
+        //     event.preventDefault();
+        //     $('#email-alert').fadeIn();
+        //     $('#password-alert').fadeIn();
+
+        // }
+        // else if ($('#email').val() == '' && $('#password').val() !== '') {
+        //     event.preventDefault();
+        //     $('#email-alert').fadeIn();
+        //     $('#password-alert').fadeOut();
+        // }
+        // else if ($('#email').val() !== '' && $('#password').val() == '') {
+        //     event.preventDefault();
+        //     $('#password-alert').fadeIn();
+        //     $('#email-alert').fadeOut();
+        // }
+      });
+      //태그를 제대로 닫지 않아서 뒤에 /script가 제대로 닫기지 않았다.
+      // ==null도 ===null과 유사하게 작동된다. ===의 차이는 string, number의 구분을 없애주는 것
+      //.on('click', ...)에서 .on('submit', ...)으로 변경
+      // 왜 if문 안에 $(#test-input).val()로 적혀있었을까...
+      $("#show-menu").click(function () {
+        $(".left-menu").animate({ marginLeft: "0" });
+      });
+
+      $(".slide-1").on("click", function () {
+        $(".slide-container").css({ transform: "translateX(0vw)" });
+      });
+      $(".slide-2").on("click", function () {
+        $(".slide-container").css({ transform: "translateX(-100vw)" });
+      });
+      $(".slide-3").on("click", function () {
+        $(".slide-container").css({ transform: "translateX(-200vw)" });
+      });
+
+      // 탭을 클릭하면
+      // 0. 활성화된 탭을 전체 없애고
+      // 1. 활성화된 내용을 전체 없애고
+      // 2. 선택된 탭에 active 추가하고
+      // 3. 선택된 내용에 show 추가
+
+      //   $(".tab-button").eq(0).click(function () {
+      //       $(".tab-button").removeClass("active");
+      //       $(".tab-content").removeClass("show");
+
+      //       $(".tab-button").eq(0).addClass("active");
+      //       $(".tab-content").eq(0).addClass("show");
+      //     });
+
+      //     $(".tab-button").eq(1).click(function () {
+      //       $(".tab-button").removeClass("active");
+      //       $(".tab-content").removeClass("show");
+
+      //       $(".tab-button").eq(1).addClass("active");
+      //       $(".tab-content").eq(1).addClass("show");
+      //     });
+
+      //   for (let i = 0; i < $(".tab-button").length; i++) {
+      //     //   for (let i = 0; i < $("li[name=tab-btn]").length; i++) {
+      //     $(".tab-button")
+      //       .eq(i)
+      //       .click(function () {
+      //         $(".tab-button").removeClass("active");
+      //         $(".tab-content").removeClass("show");
+
+      //         $(".tab-button").eq(i).addClass("active");
+      //         $(".tab-content").eq(i).addClass("show");
+      //       });
+      //   }
+
+      // for (var i = 0; i < 3; i++){
+      //     console.log(i);
+      // }
+
+      //  이벤트 리스너 줄이기 ****
+      //  만약에 실제 누른게 버튼 0이면 탭 0과 설명 0을 active, show 시키기
+      //   만약 실제 누른게 버튼 1이면...
+      $(".list").on("click", function (e) {
+        console.log(e.target.dataset.id);
+        openTab(e.target.dataset.id);
+
+        function openTab(n) {
+          $(".tab-button").removeClass("active");
+          $(".tab-content").removeClass("show");
+
+          $(".tab-button").eq(n).addClass("active");
+          $(".tab-content").eq(n).addClass("show");
+        }
+      });
+    </script>
+  </body>
+</html>

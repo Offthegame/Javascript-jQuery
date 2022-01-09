@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=UTF-8">
+        <title>Document</title>
+        <link rel="stylesheet" href="main.css">
+        <style>
+            .yellow-bg {
+                background: yellow;
+            }
+          .alert-box {
+            background-color: rgb(53, 94, 148);
+            color: cornsilk;
+            padding: 20px;
+            border-radius: 5px;
+            display: none;
+          }
+          
+          .alert-box button {
+            margin: 8px;
+          }
+
+          .alert-box p {
+              display: inline;
+          }
+          
+          </style>
+    </head>
+    <body>
+        <h4 id="test">안녕하세요</h4>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <!-- jQuery CDN이 먼저 읽혀야 아래 jQuery가 작동함 -->
+        <script>
+            // document.querySelector('h4').classList.add('yellow-bg');
+            $('#test').addClass("yellow-bg");
+        </script>
+    </body>
+</html>
