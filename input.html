@@ -65,19 +65,22 @@
       // for문을 통해서 option값을 반복해 넣을 예정
 
       let pantsSize = [26, 28, 30, 32, 34, 36];
-      let what = document.querySelectorAll("#option2>option");
-      console.log();
+
       $(".form-control").on("change", function () {
         if ($("#option1 option:selected").val() == "바지") {
           $(".size-select").addClass("show");
-          for (var i = 0; i < pantsSize.length; i++) {
-            // pantsSize.length()이렇게 해서 작동이 안됐었음
-            // javascript에서는 .length만 사용
+          // Array.forEach(function(i){})는 Array를 하나 하나 대입해서 실행시킴
+          // i 값은 사이즈 안에 있는 데이터 값 하나 하나를 넣음
 
-            let sizeTemplate = `<option>${pantsSize[i]}</option>`;
+          // 복잡하게 생각하지 말고 하나만 만들어보자
+          // option값에 26이 들어가면 된다.
+
+          pantsSize.forEach(function (i) {
+            let sizeTemplate = `<option>${i}</option>`;
             $("#option2").append(sizeTemplate);
-          }
+          });
         } else {
+          $("#option2").html("");
           $(".size-select").removeClass("show");
         }
       });
