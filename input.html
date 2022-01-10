@@ -52,7 +52,6 @@
         <p>상품선택</p>
         <select class="form-control" id="option1">
           <option>모자</option>
-          <option>셔츠</option>
           <option>바지</option>
         </select>
 
@@ -63,46 +62,22 @@
       </div>
     </form>
     <script>
-      // select값이 변했을 때, 만약 select 값이 셔츠와 같다면,
-      // '.size-select'이하 '사이즈 선택' 코드가 통으로 붙어준다
-      // 아니면 통으로 '.size-select'이하 코드를삭제시킨다
-      // `백틱`으로 코드를 짜면 아래처럼 줄 바꿈이 가능하다.
+      // for문을 통해서 option값을 반복해 넣을 예정
 
-      let shirtsSize = `
-        <option>95</option>
-        <option>100</option>
-        <option>105</option>
-      `;
+      let pantsSize = [26, 28, 30, 32, 34, 36];
       let what = document.querySelectorAll("#option2>option");
       console.log();
       $(".form-control").on("change", function () {
-        if ($("#option1 option:selected").val() == "셔츠") {
-          $("#option2").html("");
+        if ($("#option1 option:selected").val() == "바지") {
           $(".size-select").addClass("show");
-          $("#option2").append(shirtsSize);
-          // $("#option2").html(shirtsSize); html에는 통으로 바꾼다고 언급했지만 append와 똑같은 결과를 보여줌
-          // 하지만 '바지'와 같이 사용할 경우 겹쳐지는 경우 발생 html을 사용해야함
-          // let what = document.querySelectorAll("#option2>option");
-          // console.log(what);
-          // html을 아예 없애버리고 싶은데 숨겨지지는 하지만 삭제가 안되네...
-          // 오히려 이게 좋아?
-        } else if ($("#option1 option:selected").val() == "바지") {
-          // 만약에 '바지'를 선택하면
-          // 바지용 'option'을 append해줌
-          let pantsSize = `
-                  <option>28</option>
-                  <option>30</option>
-                  <option>32</option>
-                `;
+          for (var i = 0; i < pantsSize.length; i++) {
+            // pantsSize.length()이렇게 해서 작동이 안됐었음
+            // javascript에서는 .length만 사용
 
-          $("#option2").html("");
-          //난 그냥 위 아래 .append를 html로 바꿔 사용했지만
-          // 쌤은 위 코드를 통해서 html을 말끔히 삭제함
-          $(".size-select").addClass("show");
-          $("#option2").append(pantsSize);
-          // $("#option2").html(pantsSize);
+            let sizeTemplate = `<option>${pantsSize[i]}</option>`;
+            $("#option2").append(sizeTemplate);
+          }
         } else {
-          // 아니면 선택부분 '.show' 없앰
           $(".size-select").removeClass("show");
         }
       });
