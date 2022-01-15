@@ -14,6 +14,11 @@
     />
 
     <title>Hello, world!</title>
+    <style>
+      .notShow {
+        display: none;
+      }
+    </style>
   </head>
   <body>
     <div class="card-group container">
@@ -43,6 +48,12 @@
       </div>
     </div>
 
+    <div class="container my-4">
+      <button class="btn btn-danger" id="sortPrice">가격순정렬</button>
+      <button class="btn btn-danger" id="sortWords">가나다 순</button>
+      <button class="btn btn-danger" id="sortFive">5만원 이하</button>
+    </div>
+
     <script
       src="https://code.jquery.com/jquery-3.6.0.js"
       integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
@@ -55,6 +66,7 @@
         { id: 1, price: 50000, title: "Springfield Shirt" },
         { id: 2, price: 60000, title: "Black Monastery" },
       ];
+
       //   일단 하나의 값만 바꿔보자
       //   document.querySelectorAll(
       //     ".card-body"
@@ -68,16 +80,87 @@
 
       //   이제 for문을 이용해 모든 항목의 값을 바꿔보자
       console.log(products.length);
-      for (let i = 0; i < products.length; i++) {
-        $(".card-body").children("h5")[i].innerHTML = products[i].title;
-        $(".card-body").children("p")[
-          i
-        ].innerHTML = `가격: ${products[i].price}`;
+      function 보여주기(products) {
+        $(".card").each(function () {
+          $(this).addClass("notShow");
+          // .each함수를 통해 각각에 .notShow를 넣어줬다가
+          // 아래 for문에서 보여지는 .card에 notShow를 없애준다
+        });
+        for (let i = 0; i < products.length; i++) {
+          $(".card-body").children("h5")[i].innerHTML = products[i].title;
+          $(".card-body").children("p")[
+            i
+          ].innerHTML = `가격: ${products[i].price}`;
+          $(".card").eq(i).removeClass("notShow");
+        }
       }
-
+      보여주기(products);
       //   수업시간에서는 $(.title).eq(0).html(products[0].title); 방식으로 코드를 작성함
       //   가격의 경우 $(.price).eq(0).html('가격은 ' + products[0].price);
       //   물론 class를 달고 시작함, span을 써서 바뀌는 숫자 앞에만 적기도 함
+
+      // var 어레이 = [7,3,5,2,40];
+      // 어레이.sort(function(a,b){
+      //   return a-b
+      // })
+      // sort의 원리는 a-b를 빼서 양수면 a를 오른쪽 b를 왼쪽에 둠
+      // 원래 원리 자체가 그래서 외우는게 좋음
+      $("#sortPrice").on("click", function () {
+        products.sort(function (a, b) {
+          //   if (a.price > b.price) {
+          //     return 1;
+          //   }
+          //   if (a.price < b.price) {
+          //     return -1;
+          //   }
+          //   return 0;
+          // }); MDN에서는 위처럼 적혀있었으나...
+          // 어차피 원리는 결과 양수일 때 a 오른쪽, b 왼쪽이니...
+          console.log(a.price - b.price);
+          return a.price - b.price;
+        });
+        console.log(products);
+        // product가 정렬이 되는 것을 확인 함!
+
+        보여주기(products);
+      });
+
+      var 어레이 = [7, 3, 5, 2, 40];
+      var 뉴어레이 = 어레이.filter(function (a) {
+        return a < 4;
+      });
+      // .filter 함수는 조건에 맞춘 값으로 새로운 array를 만드는, 신문법이 적용된 함수
+      // .filter의 경우 '신문법(새로운 문법)'이라
+      // 새변수에 담아써야 함, 기존 array를 변형시키지 않기 때문에!
+
+      var 뉴어레이 = 어레이.map(function (a) {
+        return a * 2;
+      });
+      // .map의 경우 자료 전체에 특정 조건을 적용함
+      // .map 또한 '신문법'과 유사, 새 변수에 담아줘야 함
+
+      $("#sortWords").click(function () {
+        products.sort(function (a, b) {
+          if (a.title > b.title) {
+            return 1;
+          }
+          if (a.title < b.title) {
+            return -1;
+          }
+          return 0;
+        });
+        보여주기(products);
+      });
+      // 와, 완전 어려웠다...!
+      // 글자의 경우 어떤 숫자로 명확한 결과값이 나오지 않음
+      // 하지만 또 희안하게 크고 작은 값은 가지고 있음(boolean으로 확인 가능)
+
+      $("#sortFive").click(function () {
+        var newProduct = products.filter(function (a) {
+          return a.price <= 50000;
+        });
+        보여주기(newProduct);
+      });
     </script>
   </body>
 </html>
