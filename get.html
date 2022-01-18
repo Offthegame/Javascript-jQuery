@@ -17,8 +17,19 @@
     <style></style>
   </head>
   <body>
-    <h4 id="hello">임시글씨</h4>
-    <button class="btn btn-danger" id="load-btn">버튼</button>
+    <div class="card" style="width: 18rem">
+      <img src="..." class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+    <br />
+    <button class="btn btn-danger" id="load-btn">상품보여주기</button>
 
     <script
       src="https://code.jquery.com/jquery-3.6.0.js"
@@ -31,11 +42,17 @@
         $.ajax({
           // 클릭을 하면 ajax로 데이터를 불러온다...!
           // front-end 개발자가 매번 하는 작업이 이것...
-          url: "https://codingapple1.github.io/hello.txt",
+          url: "https://codingapple1.github.io/data.json",
           type: "GET",
         }).done(function (데이터) {
           // .done말고도 ajax와 관련해서 .fail과 .always가 있음
-          $("#hello").text(데이터);
+          console.log(데이터["brand"]);
+          $("img").attr("src", 데이터.img);
+          $(".card-title").text(`${데이터["brand"]} ${데이터.model}`);
+          $("p").text(
+            `${데이터["brand"]} is selling this car at $${데이터.price}.`
+          );
+          $("a").text("Go to buy");
         });
       });
     </script>
