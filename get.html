@@ -18,7 +18,7 @@
   </head>
   <body>
     <h4 id="hello">임시글씨</h4>
-    <button class="btn btn-danger">버튼</button>
+    <button class="btn btn-danger" id="load-btn">버튼</button>
 
     <script
       src="https://code.jquery.com/jquery-3.6.0.js"
@@ -31,7 +31,9 @@
         url: "https://codingapple1.github.io/hello.txt",
         type: "GET",
       }).done(function (데이터) {
-        $("#hello").text(데이터);
+        $("#load-btn").click(() => {
+          $("#hello").text(데이터);
+        });
       });
     </script>
   </body>
