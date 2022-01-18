@@ -27,11 +27,14 @@
     ></script>
     <!-- jQuery CDN은 항상 위에 있어야 한다 -->
     <script>
-      $.ajax({
-        url: "https://codingapple1.github.io/hello.txt",
-        type: "GET",
-      }).done(function (데이터) {
-        $("#load-btn").click(() => {
+      $("#load-btn").click(() => {
+        $.ajax({
+          // 클릭을 하면 ajax로 데이터를 불러온다...!
+          // front-end 개발자가 매번 하는 작업이 이것...
+          url: "https://codingapple1.github.io/hello.txt",
+          type: "GET",
+        }).done(function (데이터) {
+          // .done말고도 ajax와 관련해서 .fail과 .always가 있음
           $("#hello").text(데이터);
         });
       });
