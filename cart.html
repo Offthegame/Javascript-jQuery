@@ -249,6 +249,29 @@
           $(".card-group").append(template);
         });
       });
+
+      // DOM에 대한 개념학습 (Documnet Object Model)
+      // 브라우저는 html문서를 object형태로 해석함
+      // 자바스크립트는 DOM을 가지고 움직임
+      // DOM을 읽지 않은 상태에서 javascript가 먼저 실행되지 않음
+
+      // $(document).ready(function () {
+      //   $(document)에 있는 HTML을 다 읽었을 때 실행할 코드
+      // });
+
+      // 위와 같은 코드로 html을 다 읽은 이후 작동하도록 하기도 함
+
+      // $("img").on("load", function () {
+      //    이미지가 다 로드가 되었을 경우 실행할 코드
+      // });
+
+      // $(document).on("load", function () {
+      //   이미지가 다 로드가 되었을 경우 실행할 코드
+      // });
+
+      //       document.addEventListener('DOMContentLoaded', function() {
+      //   DOM생성이 완료되었을 때 실행할 코드, vanilla javascript version
+      // });
     </script>
   </body>
 </html>
