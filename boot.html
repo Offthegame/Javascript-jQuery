@@ -325,6 +325,11 @@
       integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
       crossorigin="anonymous"
     ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"
+      integrity="sha256-eVNjHw5UeU0jUqPPpZHAkU1z4U+QFBBY488WvueTm88="
+      crossorigin="anonymous"
+    ></script>
     <script>
       $(window).on("scroll", function () {
         if ($(window).scrollTop() > 50) {
@@ -546,6 +551,19 @@
 
       $(".product-title").text(어레이[0]);
       $(".product-contents").text(자료[1].model);
+
+      // Hammer를 설치(?)하고 Hammer를 적용할 것을 선택해준다
+      let 이미지1 = document.querySelectorAll(".slide-container img")[0];
+      var mc = new Hammer.Manager(이미지1);
+      mc.add(new Hammer.Pan({ threshold: 0 }));
+
+      mc.on("pan", function (e) {
+        console.log(e.deltaX);
+        // deltaX는 X축 드래그한 거리를 나타낸다.
+        $(".slide-container").css({
+          transform: "translateX(" + e.deltaX + "px)",
+        });
+      });
     </script>
   </body>
 </html>
