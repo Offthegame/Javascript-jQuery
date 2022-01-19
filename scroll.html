@@ -36,13 +36,13 @@
   <body>
     <div class="card-background">
       <div class="card-box">
-        <img src="카드이미지1경로" />
+        <img src="/img/card1.png" />
       </div>
       <div class="card-box">
-        <img src="카드이미지2경로" />
+        <img src="/img/card2.png" />
       </div>
       <div class="card-box">
-        <img src="카드이미지3경로" />
+        <img src="/img/card3.png" />
       </div>
     </div>
 
@@ -51,5 +51,15 @@
       integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
       crossorigin="anonymous"
     ></script>
+    <script>
+      // .card-box.eq(0)이 스크롤값 650 - 1150일 때 opacity가 1에서 0로 바뀌도록 한다.
+      // 1 = a*650 + b, 0 = a*1150 + b
+      // a = -1/500, b = 23/10
+      $(window).scroll(() => {
+        let 높이 = $(window).scrollTop();
+        let y = (-1 / 500) * 높이 + 23 / 10;
+        $(".card-box").eq(0).css("opacity", y);
+      });
+    </script>
   </body>
 </html>
