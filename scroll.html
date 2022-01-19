@@ -59,6 +59,19 @@
         let 높이 = $(window).scrollTop();
         let y = (-1 / 500) * 높이 + 23 / 10;
         $(".card-box").eq(0).css("opacity", y);
+
+        // 이미지는 width나 height 둘 중 하나만 줄어들어도 크기가 바뀜
+        // 현재 max-width 80%임, 그럼 max-height를 80%에서 60%로 줄어들도록짜면 될듯
+        // max-height가 80%이상이더라도 max-width로 인해 더 커지지 않음.
+        // 80 = a*650 + b, 60 = a*1150 + b
+        // a = -2/50, b = 54
+
+        // 사이즈를 줄일 때는 transform을 쓰는 것이 좋음
+        // scale(1~0)사이 값을 찾으면 됨
+        // 1 = a*650 +b, 0.9 = a*1150 +b
+        // a = -1/5000, b = 565/500
+        let z = (-1 / 5000) * 높이 + 565 / 500;
+        $(".card-box img").eq(0).css("transform", `scale(${z})`);
       });
     </script>
   </body>
