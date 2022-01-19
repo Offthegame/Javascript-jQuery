@@ -121,8 +121,12 @@
 
       .slide-container {
         width: 300vw;
-        transition: transform 1s;
+        /* transition: transform 1s; */
         position: relative;
+      }
+
+      .transition {
+        transition: transform 1s;
       }
 
       .slide-box img {
@@ -560,9 +564,26 @@
       mc.on("pan", function (e) {
         console.log(e.deltaX);
         // deltaX는 X축 드래그한 거리를 나타낸다.
-        $(".slide-container").css({
-          transform: "translateX(" + e.deltaX + "px)",
-        });
+        // e.deltaX값이 음수일 때만 움직이도록 한다
+        // .slide-container의 transition 값을 없애고 .transition을 따로 만들어준다
+        if (e.deltaX < -1) {
+          $(".slide-container").css({
+            transform: "translateX(" + e.deltaX + "px)",
+          });
+          // 그리고 터치를 놓았을 때 transition이 .slide-container 태그에 붙었다가
+          // 사진이 바뀌고
+          // 붙었던 transition 태그가 지속시간(1초)뒤에 제거되도록 한다.
+          if (e.isFinal) {
+            // console.log(e.isFinal);
+            $(".slide-container").addClass("transition");
+            pictureNow += 1;
+            // 강의에는 없었지만 기존에 pictureNow라는 변수도 조작해줘야 before, next 버튼도 움직이게 된다
+            $(".slide-container").css({ transform: "translateX(-100vw)" });
+            setTimeout(() => {
+              $(".slide-container").removeClass("transition");
+            }, 1000);
+          }
+        }
       });
     </script>
   </body>
