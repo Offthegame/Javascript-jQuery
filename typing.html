@@ -27,6 +27,29 @@
       integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
       crossorigin="anonymous"
     ></script>
-    <script></script>
+    <script>
+      let h1 = document.querySelector("h1");
+      let h1Text = document.querySelector("h1").innerHTML;
+      let p = document.querySelector("p");
+
+      h1.innerHTML = "";
+      $("button").click(() => {
+        h1.innerHTML = "";
+        for (let i = 0; i < h1Text.length; i++) {
+          setTimeout(() => {
+            console.log(h1Text[0]);
+            console.log(i);
+            console.log(h1Text[i]);
+            h1.innerHTML += h1Text[i];
+          }, 200 * (i + 1));
+        }
+        // setTimeout(() => {
+        //   h1.innerHTML += h1Text[0];
+        // }, 500);
+        // setTimeout(() => {
+        //   h1.innerHTML += h1Text[1];
+        // }, 1000);
+      });
+    </script>
   </body>
 </html>
